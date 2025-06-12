@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql" // You can change this to mysql, sqlite, etc.
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  username        String    @unique
+  password        String
+  email           String?
+  education_year  String?
+  study_program   String?
+  university      String?
+  faculty         String?
+  gpa             String?
+  profileImage    String?
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+  
+  // Store admission rounds as a JSON array
+  admission_rounds Json?
+
+  posts         Post[]
+}
+
+// Add this to your existing schema.prisma file
+model Post {
+  id            String    @id @default(cuid())
+  content       String
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  likes         Int       @default(0)
+  comments      Int       @default(0)
+}

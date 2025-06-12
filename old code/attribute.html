@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribute Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">DeK.</a>
+        <div class="nav-links">
+            <a href="index.html">NEWS</a>
+            <a href="educate.html">Educate</a>
+            <a href="guide.html">Guide</a>
+            <a href="camp.html">Camp</a>
+            <a href="interview.html">Interview</a>
+            <a href="attribute.html" class="active">Attribute</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button class="search-button">🔍</button>
+        </div>
+        <div class="profile-icon">
+            <img src="profile-icon.png" alt="Profile" id="profileImage">
+            <div class="profile-dropdown">
+                <a href="profile.html">โปรไฟล์</a>
+                <a href="#" onclick="logout()">ออกจากระบบ</a>
+            </div>
+        </div>
+    </nav>
+    <div class="banner">คุณสมบัติ ของคณะที่เราเลือกไว้ - ตัวอย่างต่างๆ และ ทุนต่างๆ</div>
+    <main>
+        <h2 class="section-title">คณะ (สาขา)</h2>
+        <div class="attribute-grid">
+            <div class="attribute-card">
+                <div class="attribute-icon"></div>
+                <div class="attribute-content">
+                    <h3>สาขา</h3>
+                    <p>คุณสมบัติ</p>
+                </div>
+            </div>
+            <div class="attribute-card">
+                <div class="attribute-icon"></div>
+                <div class="attribute-content">
+                    <h3>สาขา</h3>
+                    <p>คุณสมบัติ</p>
+                </div>
+            </div>
+            <div class="attribute-card">
+                <div class="attribute-icon"></div>
+                <div class="attribute-content">
+                    <h3>สาขา</h3>
+                    <p>คุณสมบัติ</p>
+                </div>
+            </div>
+            <div class="attribute-card">
+                <div class="attribute-icon"></div>
+                <div class="attribute-content">
+                    <h3>สาขา</h3>
+                    <p>คุณสมบัติ</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // ตรวจสอบการล็อกอิน
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || !currentUser.isLoggedIn) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // จัดการ profile dropdown
+        const profileIcon = document.querySelector('.profile-icon');
+        const profileDropdown = profileIcon.querySelector('.profile-dropdown');
+        
+        // เปิด/ปิด dropdown เมื่อคลิกที่ icon
+        profileIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profileIcon.classList.toggle('active');
+        });
+
+        // ปิด dropdown เมื่อคลิกที่อื่น
+        document.addEventListener('click', function() {
+            profileIcon.classList.remove('active');
+        });
+
+        // ป้องกันการปิด dropdown เมื่อคลิกภายใน dropdown
+        profileDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // แสดงรูปโปรไฟล์
+        const profileImage = document.getElementById('profileImage');
+        if (currentUser.profileImage) {
+            profileImage.src = currentUser.profileImage;
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'login.html';
+    }
+    </script>
+</body>
+</html> 

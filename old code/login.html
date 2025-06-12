@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DeK.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">DeK.</a>
+        <div class="nav-links">
+            <a href="index.html">NEWS</a>
+            <a href="educate.html">Educate</a>
+            <a href="guide.html">Guide</a>
+            <a href="camp.html">Camp</a>
+            <a href="interview.html">Interview</a>
+            <a href="attribute.html">Attribute</a>
+        </div>
+    </nav>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>เข้าสู่ระบบ</h2>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">รหัสผ่าน</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="login-button">เข้าสู่ระบบ</button>
+                </div>
+                <div class="form-links">
+                    <a href="#">ลืมรหัสผ่าน?</a>
+                    <a href="signup.html">สมัครสมาชิก</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    document.querySelector('.login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // อ่านข้อมูลผู้ใช้จาก localStorage
+        let users = JSON.parse(localStorage.getItem('users') || '{"users": []}');
+
+        // ตรวจสอบ username และ password
+        const user = users.users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            // เก็บข้อมูลผู้ใช้ที่ล็อกอินในปัจจุบัน
+            localStorage.setItem('currentUser', JSON.stringify({
+                username: user.username,
+                profileImage: user.profileImage || 'profile-icon.png',
+                isLoggedIn: true
+            }));
+            window.location.href = 'index.html';
+        } else {
+            alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+        }
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - DeK.</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="logo">DeK.</a>
+        <div class="nav-links">
+            <a href="index.html">NEWS</a>
+            <a href="educate.html">Educate</a>
+            <a href="guide.html">Guide</a>
+            <a href="camp.html">Camp</a>
+            <a href="interview.html">Interview</a>
+            <a href="attribute.html">Attribute</a>
+        </div>
+    </nav>
+
+    <div class="signup-container">
+        <div class="signup-progress">
+            <div class="progress-step active">ข้อมูลบัญชี</div>
+            <div class="progress-step">ข้อมูลการศึกษา</div>
+            <div class="progress-step">ข้อมูลเพิ่มเติม</div>
+        </div>
+
+        <div class="signup-box">
+            <h2>สร้างบัญชีผู้ใช้</h2>
+            <form class="signup-form" id="signupForm">
+                <!-- Step 1: ข้อมูลบัญชี -->
+                <div class="form-step" id="step1">
+                    <div class="form-group">
+                        <label for="username">ชื่อผู้ใช้ *</label>
+                        <input type="text" id="username" name="username" required
+                               placeholder="ตั้งชื่อผู้ใช้ของคุณ">
+                        <small class="form-hint">ใช้ตัวอักษรภาษาอังกฤษและตัวเลข 6-20 ตัว</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">รหัสผ่าน *</label>
+                        <div class="password-input">
+                            <input type="password" id="password" name="password" required
+                                   placeholder="ตั้งรหัสผ่าน">
+                            <button type="button" class="toggle-password">👁️</button>
+                        </div>
+                        <small class="form-hint">ใช้ตัวอักษรผสมตัวเลขอย่างน้อย 8 ตัว</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">ยืนยันรหัสผ่าน *</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required
+                               placeholder="ยืนยันรหัสผ่านอีกครั้ง">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="next-button" onclick="nextStep(1)">ถัดไป</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: ข้อมูลการศึกษา -->
+                <div class="form-step hidden" id="step2">
+                    <div class="form-group">
+                        <label for="education-year">ชั้นปีการศึกษา *</label>
+                        <select id="education-year" name="education-year" required>
+                            <option value="">เลือกชั้นปี</option>
+                            <option value="m4">มัธยมศึกษาปีที่ 4</option>
+                            <option value="m5">มัธยมศึกษาปีที่ 5</option>
+                            <option value="m6">มัธยมศึกษาปีที่ 6</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="study-program">สายการเรียน *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="study-program" value="science" required>
+                                <span class="radio-label">วิทย์-คณิต</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="study-program" value="arts-math" required>
+                                <span class="radio-label">ศิลป์-คำนวณ</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="study-program" value="arts-lang" required>
+                                <span class="radio-label">ศิลป์-ภาษา</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="back-button" onclick="prevStep(2)">ย้อนกลับ</button>
+                        <button type="button" class="next-button" onclick="nextStep(2)">ถัดไป</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: ข้อมูลเพิ่มเติม -->
+                <div class="form-step hidden" id="step3">
+                    <div class="form-group">
+                        <label for="university">มหาวิทยาลัยที่สนใจ</label>
+                        <input type="text" id="university" name="university" 
+                               placeholder="ระบุมหาวิทยาลัยที่สนใจ">
+                    </div>
+                    <div class="form-group">
+                        <label for="faculty">คณะและสาขาที่สนใจ</label>
+                        <input type="text" id="faculty" name="faculty"
+                               placeholder="ระบุคณะหรือสาขาที่สนใจ">
+                    </div>
+                    <div class="form-group">
+                        <label for="gpa">เกรดเฉลี่ย</label>
+                        <input type="number" id="gpa" name="gpa" step="0.01" min="0" max="4"
+                               placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>รอบที่สนใจ</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="admission-round" value="1">
+                                <span class="checkbox-label">รอบที่ 1 Portfolio</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="admission-round" value="2">
+                                <span class="checkbox-label">รอบที่ 2 Quota</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="admission-round" value="3">
+                                <span class="checkbox-label">รอบที่ 3 Admission</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="admission-round" value="4">
+                                <span class="checkbox-label">รอบที่ 4 Direct Admission</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="back-button" onclick="prevStep(3)">ย้อนกลับ</button>
+                        <button type="submit" class="submit-button">สมัครสมาชิก</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="form-links">
+                <span>มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบ</a></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // เพิ่ม CSS ใหม่สำหรับ UI ที่ปรับปรุง
+        const newStyles = `
+            .signup-progress {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+                max-width: 600px;
+                margin: 0 auto 30px;
+            }
+
+            .progress-step {
+                flex: 1;
+                text-align: center;
+                padding: 10px;
+                background: #f0f0f0;
+                position: relative;
+                color: #666;
+            }
+
+            .progress-step.active {
+                background: #3f70c0;
+                color: white;
+            }
+
+            .form-step {
+                transition: all 0.3s ease;
+            }
+
+            .form-step.hidden {
+                display: none;
+            }
+
+            .form-buttons {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+
+            .next-button, .back-button, .submit-button {
+                padding: 12px 24px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: background-color 0.3s;
+            }
+
+            .next-button {
+                background-color: #3f70c0;
+                color: white;
+            }
+
+            .back-button {
+                background-color: #f0f0f0;
+                color: #333;
+            }
+
+            .submit-button {
+                background-color: #28a745;
+                color: white;
+                width: 100%;
+            }
+
+            .form-hint {
+                color: #666;
+                font-size: 0.8em;
+                margin-top: 5px;
+            }
+
+            .radio-group, .checkbox-group {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .radio-option, .checkbox-option {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .radio-option:hover, .checkbox-option:hover {
+                background-color: #f8f9fa;
+            }
+
+            .password-input {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            .toggle-password {
+                position: absolute;
+                right: 10px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+            }
+        `;
+
+        // เพิ่ม style element ใหม่
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = newStyles;
+        document.head.appendChild(styleSheet);
+
+        // JavaScript functions
+        function nextStep(currentStep) {
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            document.getElementById(`step${currentStep + 1}`).classList.remove('hidden');
+            document.querySelectorAll('.progress-step')[currentStep].classList.add('active');
+        }
+
+        function prevStep(currentStep) {
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            document.getElementById(`step${currentStep - 1}`).classList.remove('hidden');
+            document.querySelectorAll('.progress-step')[currentStep - 1].classList.remove('active');
+        }
+
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+
+            // สร้างข้อมูลผู้ใช้ใหม่
+            const formData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                education_year: document.getElementById('education-year').value,
+                study_program: document.querySelector('input[name="study-program"]:checked')?.value,
+                university: document.getElementById('university').value,
+                faculty: document.getElementById('faculty').value,
+                gpa: document.getElementById('gpa').value,
+                admission_rounds: Array.from(document.querySelectorAll('input[name="admission-round"]:checked')).map(cb => cb.value),
+                profileImage: 'profile-icon.png', // เพิ่มรูปโปรไฟล์เริ่มต้น
+                created_at: new Date().toISOString()
+            };
+
+            // ดึงข้อมูลผู้ใช้ทั้งหมดจาก localStorage
+            let users = JSON.parse(localStorage.getItem('users') || '{"users": []}');
+
+            // ตรวจสอบว่ามีชื่อผู้ใช้ซ้ำหรือไม่
+            if (users.users.some(user => user.username === formData.username)) {
+                alert('ชื่อผู้ใช้นี้มีในระบบแล้ว');
+                return;
+            }
+
+            try {
+                // เพิ่มผู้ใช้ใหม่
+                users.users.push(formData);
+                
+                // บันทึกลง localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // แสดงข้อความสำเร็จ
+                alert('ลงทะเบียนสำเร็จ');
+                
+                // ล็อกอินอัตโนมัติ
+                localStorage.setItem('currentUser', JSON.stringify({
+                    username: formData.username,
+                    profileImage: formData.profileImage,
+                    isLoggedIn: true
+                }));
+
+                // ไปยังหน้าหลัก
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error saving user:', error);
+                alert('เกิดข้อผิดพลาดในการลงทะเบียน กรุณาลองใหม่อีกครั้ง');
+            }
+        });
+
+        // Toggle password visibility
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
+
+        // เพิ่มฟังก์ชันตรวจสอบความถูกต้องของฟอร์ม
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // ตรวจสอบความยาวของ username
+            if (username.length < 6 || username.length > 20) {
+                alert('ชื่อผู้ใช้ต้องมีความยาว 6-20 ตัวอักษร');
+                return false;
+            }
+
+            // ตรวจสอบรูปแบบ username
+            if (!/^[a-zA-Z0-9]+$/.test(username)) {
+                alert('ชื่อผู้ใช้ต้องประกอบด้วยตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น');
+                return false;
+            }
+
+            // ตรวจสอบความยาวของรหัสผ่าน
+            if (password.length < 8) {
+                alert('รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร');
+                return false;
+            }
+
+            // ตรวจสอบการยืนยันรหัสผ่าน
+            if (password !== confirmPassword) {
+                alert('รหัสผ่านไม่ตรงกัน');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html> 
