@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown, Plus, CheckCircle } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 
 export default function Calculator() {

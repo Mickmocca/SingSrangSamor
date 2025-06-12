@@ -3,14 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ProfileDropdown } from './profile-dropdown'
 import { useAuth } from '@/hooks/use-auth'
-import { Menu, X, Search, Import } from 'lucide-react'
+import { Menu, X, Search} from 'lucide-react'
 import Image from 'next/image'
 
 export function Navigation() {
   const pathname = usePathname()
-  const { user, loading } = useAuth()
+  const { user } = useAuth()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
   // Close menu when changing routes
